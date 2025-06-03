@@ -18,6 +18,10 @@ namespace EmployeesApp.Web.Views.Employees
         [Required(ErrorMessage = "You must specify a salary")]
         public required decimal Salary { get; set; }
 
+        [Required(ErrorMessage = "You must specify a company")]
+        [Display(Name = "Company")]
+        public required string CompanyName { get; set; }
+
         [Display(Name = "2 + 2 = ?")]
         [Required(ErrorMessage = "You must answer the question")]
         [Range(4, 4, ErrorMessage = "Wrong answer")]

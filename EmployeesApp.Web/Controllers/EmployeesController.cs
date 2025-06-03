@@ -15,14 +15,16 @@ public class EmployeesController(IEmployeeService service) : Controller
 
         var viewModel = new IndexVM()
         {
-            EmployeeVMs = [.. model
+            EmployeeVMs = model
             .Select(e => new IndexVM.EmployeeVM()
             {
                 Id = e.Id,
                 Name = e.Name,
                 ShowAsHighlighted = service.CheckIsVIP(e),
-            })]
+                CompanyName = e.Company?.Name ?? "No company"
+            }).ToArray()
         };
+
 
         return View(viewModel);
     }
@@ -45,6 +47,8 @@ public class EmployeesController(IEmployeeService service) : Controller
             Name = viewModel.Name,
             Email = viewModel.Email,
             Salary = viewModel.Salary,
+
+
         };
 
         await service.AddAsync(employee);
@@ -63,6 +67,7 @@ public class EmployeesController(IEmployeeService service) : Controller
             Name = model.Name,
             Email = model.Email,
             Salary = model.Salary,
+            CompanyName = model.Company?.Name ?? "No Company"
         };
 
         return View(viewModel);

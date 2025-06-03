@@ -8,7 +8,8 @@
         public decimal Salary { get; set; } = 0m; // Default
         public decimal Bonus { get; set; } = 0m;
 
-        public int? CompanyId { get; set; } = null;
+        //public int? CompanyId { get; set; } = null;
+        public Company? Company { get; set; }
     }
     
 }
