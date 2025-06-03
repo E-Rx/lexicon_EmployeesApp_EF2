@@ -52,14 +52,19 @@ namespace EmployeesApp.Infrastructure.Persistance.Repositories
         {
             var query = context.Employees
                 .AsNoTracking();// Förbättrar prestanda genom att inte spåra entiteterna
-                
+
             if (includeCompanies)
                 query = query.Include(e => e.Company);
 
             return await query.ToArrayAsync();
-        } 
+        }
 
-        public async Task<Employee?> GetByIdAsync(int id) => await context.Employees
-            .FindAsync(id);
+        public async Task<Employee?> GetByIdAsync(int id)
+        {
+            var query = context.Employees
+                .AsNoTracking()
+                .Include(e => e.Company);
+            return await query.SingleOrDefaultAsync(e => e.Id == id);
+        }
     }
 }
