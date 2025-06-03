@@ -52,4 +52,4 @@ public class ApplicationContext(DbContextOptions<ApplicationContext> options)
                 Email = "Admin.Torgersen@outlook.com",
             });
     }
-}
+} 
